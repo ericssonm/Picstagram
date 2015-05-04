@@ -1,0 +1,28 @@
+<section data-ng-controller="PhotosController">
+    <div class="page-header">
+        <br>
+        <h2>New Photo</h2>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" >
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Tell us about your photo.</label>
+                    <div class="controls">
+                        <input type="text" name="name" ng-model="imageName" class="form-control" placeholder="Caption description..." required>
+                    </div>
+                </div>
+        <label class="control-label" for="image">Choose a photo to upload.</label>
+        <input type="file" name="image" file-model="imageFile" id="image" accept="image/*" required/><br/>
+
+                <div class="form-group">
+                    <button class="btn btn-default" name="Submit" label="submit" ng-click="create()">Upload</button>
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+
+            </fieldset>
+        </form>
+    </div>
+</section>

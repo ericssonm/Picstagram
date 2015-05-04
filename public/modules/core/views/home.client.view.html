@@ -1,0 +1,75 @@
+<!--LOGGED OUT VIEW-->
+
+
+<section class="home-wrapper" data-ng-controller="HomeController">
+	<div id="introduction" class="jumbotron text-center" ng-hide="authentication.user">
+		<div class="row">
+				<div class="logo">
+					<img alt="PICSTAGRAM" class="img-responsive text-center" src="modules/core/img/brand/logo.svg" />
+				</div>
+			<div class="lead">
+				<hr>
+
+				<div class="phone">
+					<img alt="PHONE" class="img-responsive text-center" src="modules/core/img/brand/phone.png">
+				</div>
+
+				<h1>Who Are We?</h1><br>
+
+				Picstagram is a <b>fast</b>, <b>beautiful</b> and <b>fun</b> way to share your life with friends and family as well as the rest of the world.<br><br>
+
+				You can take a picture and post it instantly — it's that easy. Check out other users posts and see what they're up to. You can even chat with your contacts in real-time to catch up, post a status and even like your contact's photos.<br><br>
+
+				Oh yeah, did we mention it’s <i>free</i>?<br><br>
+				
+				<p>
+					<a class="btn btn-primary btn-lg" href="/#!/signup">Get Started</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+<!--LOGGED IN VIEW-->
+
+
+	<div class="jumbotron" ng-show="authentication.user">
+		
+		<h1>Welcome back, <i>{{authentication.user.firstName}}</i>!</h1>
+
+		<p>See what you've missed in <a href="/#!/articles">Posts</a>, <a href="/#!/photos">Photos</a> and the latest <a href="/#!/timeline">Buzz</a>.</p>
+
+		<hr>
+
+		<p>We've just added a new feature to the site that allows you to talk to your contacts in real time.<br><br>See if anybody you know is online! <a href="/#!/chat" type="button" class="btn btn-lg btn-success">Chat Now!</a>
+		</p>
+
+	</div>
+
+	<div id="photos-wrapper" ng-controller="PhotosController" ng-show="authentication.user">
+		<div class="jumbotron">
+			<div class="panel panel-primary" ng-init="filterPhotos(photos)">
+				<div class="panel-heading">
+					<h2>Recent Photo Activity</h2>
+				</div>
+				<div class="a-photo row" ng-repeat="photo in photos | orderBy:'-score'">
+					<div class="col-lg-6">
+						<a data-ng-href="#!/photos/{{photo._id}}" class="list-group-item" ng-swipe-right="hide(index)">
+						    <image src="{{photo.image}}" style="max-width:100%" />
+						</a>
+					</div>
+			
+					<div class="col-lg-3">
+						<h3 class="list-group-item-heading" data-ng-bind="photo.name"></h3>
+						<small class="list-group-item-text">
+						    Posted on
+						    <span data-ng-bind="photo.created | date:'medium'"></span>
+						    by
+						    <span data-ng-bind="photo.user.displayName"></span>
+						</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
